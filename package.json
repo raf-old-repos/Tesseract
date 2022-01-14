@@ -1,0 +1,26 @@
+{
+  "name": "tesseract",
+  "version": "1.0.0",
+  "description": "REST client in 4 dimensions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gitter499/Tesseract.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gitter499/Tesseract/issues"
+  },
+  "homepage": "https://github.com/Gitter499/Tesseract#readme",
+  "dependencies": {
+    "undici": "^4.12.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}
