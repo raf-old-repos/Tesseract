@@ -1,19 +1,29 @@
 import { RequestOptions } from "./types/Options";
 import { request } from "undici";
 
-export class Request<T> {
+export class Request {
     private _url: string = ""
-    public constructor(cleanUrl: string, options: RequestOptions) {
+    private body?: any = undefined
+    public constructor(cleanUrl: string, options?: RequestOptions) {
         this._url = cleanUrl
     }
     public async get() {
         const { body } = await request(this._url)
-        const _res = await body.json()
-        if (typeof _res  === typeof this){
+        this.body = body
+        return this
+    }
+    public async json<T, E>(error?: string | "ERROR") {
+        const _res = await this.body.json()
+        if ((_res as T)) {
             return _res
-        } else {
-            return 
+        } else if ((_res as E)) {
+            return { _res, error }
+        }
+        else {
+            return false
         }
     }
-    public async post()
+    public async post() {
+
+    }
 }
