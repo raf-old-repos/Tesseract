@@ -7,10 +7,13 @@ export class Request {
     public constructor(cleanUrl: string, options?: RequestOptions) {
         this._url = cleanUrl
     }
-    public async get() {
+    private async _get() {
         const { body } = await request(this._url)
         this.body = body
         return this
+    }
+    public get() {
+        return this._get().then(req => req)
     }
     public async json<T, E>(error?: string | "ERROR") {
         const _res = await this.body.json()

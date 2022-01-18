@@ -6,7 +6,7 @@ export class Shape {
     private _addend: string = ""
     private _generated: string = ""
     public constructor(base: string, options: ShapeOptions = {}) {
-        this._base = base
+        this._base = base.charAt(-1) === "/" ? base : base.concat("/")
         this._generated = this._base
     }
 
@@ -35,6 +35,9 @@ export class Shape {
         return this
     }
 
+    public url(): string {
+        return this._generated
+    }
     public new(): Request {
         return new Request(this._generated)
     }
