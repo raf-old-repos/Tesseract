@@ -12,21 +12,30 @@ export class Shape {
 
     // ! TODO Sanitize URL
     private sanitizeAttachment(attachment: string): string {
-        return ""
+        const _attachment = attachment.split("")
+        _attachment.forEach((char, idx) => {
+            if (char.match("/") || char.match("?")) {
+                _attachment.splice(idx, 1)
+            }
+        })
+        return _attachment.toString()
     }
 
     public a(attachment: string, ...args: any[]): Shape {
-    
+        attachment = this.sanitizeAttachment(attachment)
 
         this._generated = this._generated.concat(attachment.concat("/"))
         return this
     }
     public param(key: string, val: string): Shape {
-        this._generated.concat
+        key = this.sanitizeAttachment(key)
+        val = this.sanitizeAttachment(val)
+
+        this._generated.concat(`?${key}=${val}`)
         return this
     }
 
     public new(): Request {
-        return new Request()
+        return new Request(this._generated)
     }
 }
