@@ -15,7 +15,7 @@ export class Request {
     public get() {
         return this._get().then(req => req)
     }
-    public async json<T, E>(error?: string | "ERROR") {
+    public async json<T, E>(error?: string | "ERROR"): Promise<{ _res?: T, error: string | undefined}>{
         const _res = await this.body.json()
         if ((_res as T)) {
             return _res
@@ -23,10 +23,10 @@ export class Request {
             return { _res, error }
         }
         else {
-            return false
+            return {_res, error}
         }
     }
-    public async post() {
-
+    public async post<T>(callback: () => void): Promise<{res: T, error?: string}>{
+        return new Promise
     }
 }
