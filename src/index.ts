@@ -1,3 +1,4 @@
+
 import { Shape } from "./shape"
 
 const covid = new Shape("https://disease.sh/")
@@ -24,10 +25,14 @@ const main = async (): Promise<void> => {
     // get data
     const data: CovidResponse | Error = (await CovidShape.get()).json<CovidResponse, Error>()
     const { rasterizedBody, headers, statusCode } = await CovidShape.post<CovidResponse>({
-        headers: ["blah"], body: {
+        headers: [{"auth": "lol"}], 
+        body: {
             hello: "world"
         }
     })
+
+
+    
 }
 
 main()

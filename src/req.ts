@@ -1,5 +1,5 @@
-import { EUT, PostOptions, PostReturnType, RequestOptions } from "./types/Options";
-import Undici, { request } from "undici";
+import { PostOptions, PostReturnType, RequestOptions } from "./types/Options";
+import { request } from "undici";
 
 export class Request {
     private _url: string = ""
@@ -24,7 +24,7 @@ export class Request {
     public async post<T>(load: PostOptions): Promise<PostReturnType<T>> {
         return new Promise<PostReturnType<T>>(async (resolve, reject) => {
             try {
-                const { headers, body, statusCode } = await Undici.request(this._url, {
+                const { headers, body, statusCode } = await request(this._url, {
                     method: "POST",
                     body: load.body?.toString(),
                     headers: load.headers
